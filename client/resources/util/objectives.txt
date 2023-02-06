@@ -1,0 +1,15 @@
+1*Ripristina l'elettricita'
+2*Capisci cosa e' stato quel boato
+3*Ripristina i livelli di ossigeno
+4*Fasciati il braccio
+5*Controlla la navicella di salvataggio
+6*Trova il carburante per la navicella e riempi i serbatoi
+7*Trova le chiavi di avviamento della navicella
+8*Trova medicinali da portare sulla Terra
+9*Trova acqua da portare sulla navicella
+10*Trova il Contatore di Geiger
+11*Trova la tuta protettiva e indossala
+12*Trova lo schermo e le batterie del contatore di Geiger
+13*Ripara il contatore
+14*Scappa
+15*Usa il contatore

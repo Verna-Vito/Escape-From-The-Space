@@ -1,0 +1,8 @@
+<#if licenseFirst??>
+${licenseFirst}
+</#if>
+${licensePrefix}Copyright 2022 
+${licensePrefix}Autori: Verna Vito e Alessandro Mazzotta
+<#if licenseLast??>
+${licenseLast}
+</#if>

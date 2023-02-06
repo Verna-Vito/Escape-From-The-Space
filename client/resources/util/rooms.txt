@@ -1,0 +1,9 @@
+Dormitori*E' pieno di letti qui, non so cosa potrei trovare.*--*--*Zona Comune*Sala Manutenzione e Elettrica*null*null*Mappa dormitori, Badge, Tuta protettiva
+Zona Comune*Cibo e svago qui*Sala comune*--*Settore GO SCI*Cucina e Sala mensa*Dormitori*null*Mappa zona comune, Chiave 2
+Cucina e sala mensa*Cibo... Tanto cibo*Cucina, Sala mensa, Mensa*--*Deposito Generale*null*Sala Manutenzione e Elettrica*Zona Comune*Mappa cucina, Botte di acqua
+Sala Manutenzione e Elettrica*Sala elettrica*Sala manutenzione, Sala elettrica*--*Cucina e sala mensa*null*null*Dormitori*Quadro elettrico, Batterie
+Settore GO SCI*Settore Governo e Scienza*--*--*null*Sala mon. Terra e Zona di lancio*Zona comune*Zona Medica e Ospedale*Computer di Bordo, Mappa go sci
+Zona Medica e Ospedale*Medicinali ovunque*Zona medica, Ospedale*--*null*Settore GO SCI*null*null*Bende, Mappa ospedale, Bombola di ossigeno, Contatore di Geiger, Pillole
+Sala mon. Terra e Zona di lancio*Posso monitorare la Terra da qui... <br/>Che figo!*Sala monitoraggio, Zona di lancio*--*null*Deposito Generale*null*Settore GO SCI*Chiave 1, Navicella
+Deposito Generale*Quanta robaccia qui dentro*Deposito*--*null*null*Cucina e sala mensa*Sala mon. Terra e Zona di lancio*Schermo, Carburante
+Pianeta Terra*--*--*--*null*null*null*null*--

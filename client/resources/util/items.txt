@@ -1,0 +1,20 @@
+Batterie*Delle semplici batterie da utilizzare per riparare il Contatore di Geiger.*Batteria, Pila, Pile*false*true*false*true*battery
+Badge*Un badge della sezione GO-SCI, puoi usarlo per aprire le porte del Settore Go Sci.*Tesserino*false*true*true*false*badge
+Bende*Puoi usarle per ripristinare una percentuale di vita.*Benda, Fascia, Bendaggi*false*true*true*false*bandage
+Chiave 1*Ti servira' per avviare il motore della navicella.*Chiave di avviamento 1*false*true*false*false*key
+Chiave 2*Ti servira' per avviare il motore della navicella.*Chiave di avviamento 2*false*true*false*false*key
+Bombola di ossigeno*Ripristina una piccola quantita' di ossigeno.*Bombola, Ossigeno, Bombole, Bombole di ossigeno*false*true*true*false*oxygen_tank
+Pillole*Scorte di medicinali da portare sulla Terra.*Pillole, Medicine, Medicinali*false*true*false*false*pills
+Tuta protettiva*Utilizzabile per l'atterraggio sulla Terra come precauzione.*Tuta, Tuta di protezione*false*true*true*false*protective_wear
+Mappa dormitori*Piantina della navicella*Mappa, Piantina*true*false*false*false*dorms_map
+Mappa go sci*Piantina della navicella*Mappa, Piantina*true*false*false*false*goSci_map
+Mappa ospedale*Piantina della navicella*Mappa, Piantina*true*false*false*false*hospital_map
+Mappa cucina*Piantina della navicella*Mappa, Piantina*true*false*false*false*kitchen_map
+Mappa zona comune*Piantina della navicella*Mappa, Piantina*true*false*false*false*commonZone_map
+Botte di acqua*Provviste da portare sulla navicella di salvataggio.*Acqua, Bottiglia, Bottiglia di acqua*false*true*false*false*bottle_water
+Carburante*Ti permettera' di riempire il serbatoio della navicella di salvataggio.*Benzina, Tanica di benzina, Tanica di carburante*false*true*true*false*fuel
+Schermo*Lo schermo del contatore di Geiger.*Display*false*true*false*true*display
+Contatore di Geiger*Ti servira' sulla terra per rilevare il livello di radazioni*Contatore, Contatore di radiazioni*false*true*false*true*geiger-counter-broken
+Computer di Bordo*--*Computer*false*false*true*false*--
+Quadro elettrico*--*Quadro, Quadro generale*false*false*true*false*--
+Navicella*--*Navicella di salvataggio, Capsula, Capsula di salvataggio*true*false*true*false*--
