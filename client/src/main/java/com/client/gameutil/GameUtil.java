@@ -247,7 +247,7 @@ public abstract class GameUtil extends Game {
                     str = str + strIn[i] + " ";
                 }
                 str = str.trim();
-                
+
                 if (commandId == 8 && this.isGameStarted() == false) {
                     cmd.quit(this.getSocket(), db);
                 } else if (commandId == -1) {
@@ -269,7 +269,7 @@ public abstract class GameUtil extends Game {
                     game.setStory(this.getStory());
                     game.setStoryBoard(this.getStory().getPieceStory());
 
-                    if (this.getStory().getLenStory() > 1) {
+                    if (this.getStory().getLenStory() > 0) {
                         cmd.setCMDblocked(true);
                     }
 
@@ -465,8 +465,9 @@ public abstract class GameUtil extends Game {
                         this.setActualRoom(room);
                         game.setRoomName(this.getActualRoom().getName()
                                 .toUpperCase());
-                        game.setStoryBoard(("Sei entrato nella stanza: "
-                                + this.getActualRoom().getName()));
+                        game.setStoryBoard("Sei entrato nella stanza: "
+                                + this.getActualRoom().getName() + "<br/><br/>"
+                                + this.getActualRoom().getDesc());
 
                         game.getLifeBar().setValue(game.
                                 getLifeBar().getValue() - 25);
@@ -477,8 +478,9 @@ public abstract class GameUtil extends Game {
                         this.setActualRoom(room);
                         game.setRoomName(this.getActualRoom()
                                 .getName().toUpperCase());
-                        game.setStoryBoard(("Sei entrato nella stanza: "
-                                + this.getActualRoom().getName()));
+                        game.setStoryBoard("Sei entrato nella stanza: "
+                                + this.getActualRoom().getName() + "<br/><br/>"
+                                + this.getActualRoom().getDesc());
                     }
                 }
                 break;
@@ -542,9 +544,13 @@ public abstract class GameUtil extends Game {
 
                         this.getStory().setSubChapter(0);
 
-                        if (this.getStory().getLenStory() > 1) {
+                        if (this.getStory().getLenStory() > 0) {
                             cmd.setCMDblocked(true);
                         }
+
+                        this.getActualRoom().updateAvailableCommands(game, cmd);
+                        game.setAvailableCommands(
+                                this.getActualRoom().getAvailableCommands());
 
                         game.setStory(this.getStory());
                         game.setStoryBoard(this.getStory().getPieceStory());

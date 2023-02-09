@@ -22,7 +22,6 @@ import com.client.types.items.OxygenTank;
 import com.client.types.items.ProtectiveWear;
 import com.client.types.items.RoomMap;
 import com.client.types.items.SpaceShip;
-import com.client.types.rooms.Earth;
 import com.client.types.rooms.GoSciSector;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -108,7 +107,7 @@ public class Command {
      * @return <code>true</code> se i comandi sono bloccati; <code>false</code>
      * altrimenti.
      */
-    public boolean getCMDblocked() {
+    public boolean isCMDblocked() {
         return this.CMDblocked;
     }
 
@@ -376,24 +375,43 @@ public class Command {
      */
     public void look(Room actualRoom) {
         List<String> items = new ArrayList<>();
+        String result;
 
         if (!CMDblocked) {
-            if (actualRoom.getClass() != Earth.class) {
+            if (actualRoom.isLookable() == true) {
                 if (actualRoom.getItems().isEmpty()) {
-                    gameframe.setStoryBoard(actualRoom.getDesc() + "<br/>"
-                            + actualRoom.getLook() + "<br/>Non sono presenti oggetti "
-                            + "in questa stanza.");
+                    result = "<br/><br/>Non sono presenti oggetti in questa stanza.<br/><br/>";
+                    
                 } else {
                     actualRoom.getItems().stream()
                             .map(i -> i.getName())
                             .forEach(name -> items.add(name));
-
-                    gameframe.setStoryBoard(actualRoom.getDesc() + "<br/>"
-                            + actualRoom.getLook() + "<br/>Vedo degli oggetti: "
-                            + items.toString().replace("[", "").replace("]", "").trim());
+                    
+                    result = "<br/><br/>Vedo degli oggetti: "
+                            + items.toString().replace("[", "").replace("]", "").trim() + ".<br/><br/>";
                 }
+
+                if(actualRoom.getEast() != null) {
+                    result = result + " - Ad Est c'e': " + actualRoom.getEast().getName() + ".<br/>";
+                }
+
+                if(actualRoom.getWest() != null) {
+                    result = result + " - Ad Ovest c'e': " + actualRoom.getWest().getName() + ".<br/>";
+                }
+
+                if(actualRoom.getNorth() != null) {
+                    result = result + " - A Nord c'e': " + actualRoom.getNorth().getName() + ".<br/>";
+                }
+
+                if(actualRoom.getSouth() != null) {
+                    result = result + " - A Sud c'e': " + actualRoom.getSouth().getName() + ".<br/>";
+                }
+
+                gameframe.setStoryBoard(actualRoom.getDesc() + result);
             } else {
-                gameframe.setStoryBoard(actualRoom.getDesc() + "<br/>" + actualRoom.getLook());
+                audio.playAlert();
+                JOptionPane.showMessageDialog(gameframe, "Non c'è niente da "
+                        + "vedere qui!!", "Attenzione!", 2);
             }
         } else {    //se i comandi sono bloccati
             audio.playAlert();
@@ -459,7 +477,7 @@ public class Command {
 
                 if (!flag) {
                     JOptionPane.showMessageDialog(gameframe, "L'oggetto con questo "
-                            + "nome: " + item + " non può essre guardato!\n", "Errore", 0);
+                            + "nome: " + item + " non può essere guardato!\n", "Errore", 0);
                 }
             }
         } else {    //se i comandi sono bloccati

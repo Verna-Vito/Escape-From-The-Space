@@ -9,6 +9,8 @@ L’avventura è facilmente estendibile e modificabile, poiché, durante la crea
 La trama trae qualche spunto dalla serie tv The 100. Il compito principale del giocatore è quello di completare tutti gli obbiettivi che gli permetteranno di scappare dalla Stazione Spaziale ed arrivare sulla Terra.
 
 Sono presenti anche due minigiochi molto semplici che servono ad intrattenere il giocatore così da rendergli più difficile la gestione del tempo (c’è anche la possibilità di morire per questo (mezzo spoiler)).
+ - Minigioco della Sala Elettrica - Sol. → guardare il terminale del client.
+ - Minigioco del Settore GO-SCI - Sol. → la password da inserire è ```*****```.
 
 Abbiamo pensato che il giocatore potesse avere difficoltà con le meccaniche del gioco, per questo, abbiamo aggiunto un comando `Aiuto` (parte in automatico ogni nuova partita), che è possibile chiamare in un qualsiasi punto del gioco.
 

@@ -7,7 +7,6 @@ package com.client.types;
 import com.client.command.Command;
 import com.client.form.gameframe.GameFrame;
 import com.client.gameutil.DB;
-import com.client.types.rooms.Earth;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -73,15 +72,16 @@ public abstract class Room implements Types, Serializable {
     private final String name;
 
     /**
-     * Attributo di tipo String che contiene la descrizione della stanza.
+     * Attributo di tipo String che contiene la descrizione dettagliata della 
+     * stanza.
      */
     private String desc;
 
     /**
-     * Attributo di tipo String che contiene la descrizione dettigliata della
-     * stanza.
+     * Attributo di tipo boolean che indica se la stanza ha informazioni da 
+     * dare all'utente.
      */
-    private String look;
+    private boolean look;
 
     /**
      * Attributo List di String che contiene tutti gli alias del
@@ -191,7 +191,8 @@ public abstract class Room implements Types, Serializable {
 
         this.setDesc(roomString[0]);
         this.setAlias(Arrays.asList(roomString[1].split(", ")));
-        this.setLook(roomString[2]);
+        
+        this.setLook(Boolean.parseBoolean(roomString[2]));
 
         this.searchItem(listItems, roomString[3]);
     }
@@ -406,22 +407,23 @@ public abstract class Room implements Types, Serializable {
     }
 
     /**
-     * Metodo che si occupa di restituire quello che l'utente vede all'interno
-     * della stanza.
+     * Metodo che si occupa di restituire <code>true</code> se la stanza ha 
+     * informazioni da dare all'utente; <code>false</code> altrimenti.
      *
-     * @return la stringa che descrive l'interno della stanza
+     * @return <code>true</code> se la stanza ha informazioni da dare 
+     * all'utente; <code>false</code> altrimenti
      */
-    public String getLook() {
+    public boolean isLookable() {
         return look;
     }
 
     /**
-     * Metodo che si occupa di impostre quello che l'utente vede all'interno
-     * della stanza.
+     * Metodo che si occupa di impostre a <code>true</code> se la stanza ha 
+     * informazioni da dare all'utente; a <code>false</code> altrimenti.
      *
-     * @param look la stringa che descrive l'interno della stanza
+     * @param look il valore che deve avere l'attributo look
      */
-    public void setLook(String look) {
+    public void setLook(boolean look) {
         this.look = look;
     }
 
@@ -451,10 +453,11 @@ public abstract class Room implements Types, Serializable {
     public void updateAvailableCommands(GameFrame gf, Command cmd) {
         int combinableItems = 0;
 
-        if (cmd.getCMDblocked()) {
+        if (cmd.isCMDblocked()) {
             for (Map.Entry<String, Integer> availableCmd : this.getAvailableCommands().entrySet()) {
-                if (!availableCmd.getKey().equals(Room.HELP) && !availableCmd.getKey().equals(Room.QUIT) && !availableCmd.getKey().equals(Room.READ)) {
+                if (!availableCmd.getKey().equals(Room.HELP) && !availableCmd.getKey().equals(Room.QUIT)) {
                     this.getAvailableCommands().put(availableCmd.getKey(), 0);
+                    this.getAvailableCommands().put(READ, 1);
                 }
             }
         } else {
@@ -466,13 +469,11 @@ public abstract class Room implements Types, Serializable {
             }
 
             if (this.getEast() != null || this.getNorth() != null || this.getWest() != null || this.getSouth() != null) {
-                this.getAvailableCommands().put(GOTO, 1);
+                this.getAvailableCommands().put(Room.GOTO, 1);
             }
 
-            if (this.getClass() == Earth.class) {
-                this.availableCommands.put(GOTO, 0);
-                this.availableCommands.put(LOOK, 0);
-                this.availableCommands.put(HELP, 0);
+            if (this.isLookable()) {
+                this.availableCommands.put(Room.LOOK, 1);
             }
 
             if (!gf.getInventory().isEmpty()) {
@@ -482,28 +483,28 @@ public abstract class Room implements Types, Serializable {
                     }
 
                     if (gf.getInventory().get(i).isUsable()) {
-                        this.getAvailableCommands().put(USE, 1);
+                        this.getAvailableCommands().put(Room.USE, 1);
                     }
                 }
             }
 
             if (combinableItems > 1) {
-                this.getAvailableCommands().put(COMBINE, 1);
+                this.getAvailableCommands().put(Room.COMBINE, 1);
             }
 
             if (!this.getItems().isEmpty()) {
                 for (int i = 0; i < this.getItems().size(); i++) {
                     if (this.getItems().get(i).isPickupable()) {
-                        this.getAvailableCommands().put(PICKUP, 1);
+                        this.getAvailableCommands().put(Room.PICKUP, 1);
                     }
 
                     if (this.getItems().get(i).isLookable()) {
-                        this.getAvailableCommands().put(LOOK_ITEM, 1);
+                        this.getAvailableCommands().put(Room.LOOK_ITEM, 1);
                     }
 
                     if (this.getItems().get(i).isUsable() && !this.getItems()
                             .get(i).isPickupable()) {
-                        this.getAvailableCommands().put(USE, 1);
+                        this.getAvailableCommands().put(Room.USE, 1);
                     }
                 }
             }

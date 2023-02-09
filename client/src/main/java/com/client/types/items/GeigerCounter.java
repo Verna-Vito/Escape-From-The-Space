@@ -183,6 +183,13 @@ public class GeigerCounter extends Item {
 
                 gameframe.getInventory().remove(this);
                 gameframe.updateInventory();
+            } else {
+                audio.playAlert();
+                JOptionPane.showMessageDialog(
+                        gameframe,
+                        "Il livello di radiazioni è stabile",
+                        "",
+                        0);
             }
         }
     }

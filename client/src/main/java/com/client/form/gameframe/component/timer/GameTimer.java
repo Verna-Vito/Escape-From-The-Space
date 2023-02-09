@@ -42,6 +42,12 @@ public class GameTimer implements Serializable, Runnable {
     private int hours = 0;
 
     /**
+     * Attributo di tipo boolean protetto che indica se il Thread è stato messo
+     * in pausa o meno.
+     */
+    private boolean paused = false;
+
+    /**
      * Attributo che rappresenta la label all'interno del gameFrame.
      */
     private JLabel gameTimerString;
@@ -75,6 +81,10 @@ public class GameTimer implements Serializable, Runnable {
         this.elapsedTime = time;
     }
 
+    public void pause() {
+        this.paused = !this.paused;
+    }
+
     /**
      * Override del metodo run di Runnable che si occupa dell'incremento del
      * timer.
@@ -86,25 +96,27 @@ public class GameTimer implements Serializable, Runnable {
             String minutesString;
             String hoursString;
 
-            try {
-                elapsedTime = elapsedTime + 1000;
+            if (!paused) {
+                try {
+                    elapsedTime = elapsedTime + 1000;
 
-                hours = (elapsedTime / 3600000);
-                minutes = (elapsedTime / 60000) % 60;
-                seconds = (elapsedTime / 1000) % 60;
+                    hours = (elapsedTime / 3600000);
+                    minutes = (elapsedTime / 60000) % 60;
+                    seconds = (elapsedTime / 1000) % 60;
 
-                secondsString = String.format("%02d", seconds);
-                minutesString = String.format("%02d", minutes);
-                hoursString = String.format("%02d", hours);
+                    secondsString = String.format("%02d", seconds);
+                    minutesString = String.format("%02d", minutes);
+                    hoursString = String.format("%02d", hours);
 
-                gameTimerString.setText(
-                        hoursString + ":"
-                        + minutesString + ":"
-                        + secondsString);
-                
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+                    gameTimerString.setText(
+                            hoursString + ":"
+                            + minutesString + ":"
+                            + secondsString);
+
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         } while (true);
     }

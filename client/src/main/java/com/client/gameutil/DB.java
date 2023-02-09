@@ -114,7 +114,7 @@ public class DB {
                 + "Name VARCHAR(1024),"
                 + "Description VARCHAR(10000),"
                 + "Alias VARCHAR(1024),"
-                + "Look VARCHAR(1024),"
+                + "Look BOOLEAN,"
                 + "North VARCHAR(100),"
                 + "East VARCHAR(100),"
                 + "South VARCHAR(100),"
@@ -368,7 +368,7 @@ public class DB {
         pstm.setString(1, roomStrings[0]); // nome
         pstm.setString(2, roomStrings[1]); // desc
         pstm.setString(3, roomStrings[2]); // alias
-        pstm.setString(4, roomStrings[3]); // look
+        pstm.setBoolean(4, Boolean.parseBoolean(roomStrings[3])); // look
         pstm.setString(5, roomStrings[4]); // nord
         pstm.setString(6, roomStrings[5]); // est
         pstm.setString(7, roomStrings[6]); // sud
@@ -621,6 +621,7 @@ public class DB {
      */
     public String[] readRoom(String query, String param) throws SQLException {
         String[] roomString = {"", "", "", ""};
+        Boolean lookFromDB;
 
         PreparedStatement pstm = con.prepareStatement(query);
         pstm.setString(1, param);
@@ -628,9 +629,11 @@ public class DB {
         ResultSet read = pstm.executeQuery();
 
         while (read.next()) {
+            lookFromDB = read.getBoolean(3);
+
             roomString[0] = read.getString(1);
             roomString[1] = read.getString(2);
-            roomString[2] = read.getString(3);
+            roomString[2] = lookFromDB.toString();
             roomString[3] = read.getString("Items");
 
         }

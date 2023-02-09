@@ -49,31 +49,38 @@ public class Computer extends Item {
      */
     public void use(GameFrame gameframe, AudioPlayer audio) {
         String input;
-        if (!this.isUsed()) {
-            do {
-                input = JOptionPane.showInputDialog(
-                        "Per favore inserisci la password: ");
+        if (gameframe.getStory().getChapter() > 1) {
+            if (!this.isUsed()) {
+                do {
+                    input = JOptionPane.showInputDialog(
+                            "Per favore inserisci la password: ");
 
-                if (input != null) {
-                    if (!input.equals("*****")) {
-                        audio.playAlert();
-                        JOptionPane.showMessageDialog(gameframe,
-                                "Accesso negato! Password errata!\nLa password "
-                                + "dovrebbe essere uguale a *****",
-                                "Accesso negato", 0);
+                    if (input != null) {
+                        if (!input.equals("*****")) {
+                            audio.playAlert();
+                            JOptionPane.showMessageDialog(gameframe,
+                                    "Accesso negato! Password errata!\nLa password "
+                                    + "dovrebbe essere uguale a *****",
+                                    "Accesso negato", 0);
+                        } else {
+                            JOptionPane.showMessageDialog(gameframe,
+                                    "Accesso eseguito correttamente!",
+                                    "Accesso autorizzato", 3);
+                            this.setUsed(true);
+                        }
                     } else {
-                        JOptionPane.showMessageDialog(gameframe,
-                                "Accesso eseguito correttamente!",
-                                "Accesso autorizzato", 3);
-                        this.setUsed(true);
+                        break;
                     }
-                } else {
-                    break;
-                }
-            } while (!input.equals("*****"));
+                } while (!input.equals("*****"));
 
+            } else {
+                gameframe.setStoryBoard(STORY);
+            }
         } else {
-            gameframe.setStoryBoard(STORY);
+            audio.playAlert();
+            JOptionPane.showMessageDialog(gameframe,
+                    "Cercavi di speedrunnare? Ti abbiamo fregato!",
+                    "=D", 0);
         }
     }
 }

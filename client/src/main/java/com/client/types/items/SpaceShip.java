@@ -192,6 +192,8 @@ public class SpaceShip extends Item {
                         + this.weatherDesc, "Successo", 3);
 
                 gameframe.getOxygenTimer().pause(); // ferma il decremento
+                
+                gameframe.getGameTimer().pause();
 
                 /*
                  * Imposta il valore dell'ossigeno a 100 e 
